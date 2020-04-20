@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-posts',
@@ -9,7 +10,7 @@ import { DataService } from 'src/app/services/data.service';
 export class PostsPage implements OnInit {
   posts: any = [];
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, public authService: AuthService) {
     this.dataService.getData('posts').subscribe(data => {
       console.log(data);
       this.posts = data;

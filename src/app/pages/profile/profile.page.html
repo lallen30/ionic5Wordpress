@@ -1,9 +1,34 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>profile</ion-title>
+    <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <form #f="ngForm" (ngSubmit)="onLogin(f)"
+        *ngIf="!(authService.isAuthenticated | async)">
+          <ion-item>
+            <ion-label position="floating">Username</ion-label>
+            <ion-input type="text" name="username" [(ngModel)]="model.username"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" name="password" [(ngModel)]="model.password"></ion-input>
+          </ion-item>
+          <ion-button expand="block" type="submit" color="primary">
+            Submit
+          </ion-button>
+        </form>
+      </ion-col>
+      <ion-col size="12" *ngIf="(authService.isAuthenticated | async)">
+        <ion-button expand="block" type="button" color="primary" (click)="logout()">
+          Logout
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

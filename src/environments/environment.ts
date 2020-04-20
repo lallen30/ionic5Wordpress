@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8888/wp-json/wp/v2/'
+  apiUrl: 'http://localhost:8888/wp-json/'
 };
 
 /*
