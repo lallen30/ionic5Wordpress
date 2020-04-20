@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -14,7 +14,9 @@ export class PostDetailsPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private dataService: DataService,
-    public authService: AuthService) { }
+    public authService: AuthService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -22,6 +24,14 @@ export class PostDetailsPage implements OnInit {
     this.dataService.getData(`posts/${id}`).subscribe(data => {
       console.log('data: ', data);
       this.post = data;
+    });
+  }
+
+  onDelete() {
+    this.dataService.deleteData(`posts/${this.post.id}`).subscribe(data => {
+      console.log(data);
+      this.dataService.refreshPosts.next();
+      this.router.navigateByUrl('/tabs');
     });
   }
 

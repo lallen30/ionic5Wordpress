@@ -10,7 +10,17 @@ import { AuthService } from 'src/app/services/auth.service';
 export class PostsPage implements OnInit {
   posts: any = [];
 
-  constructor(private dataService: DataService, public authService: AuthService) {
+  constructor(
+    private dataService: DataService,
+    public authService: AuthService
+    ) {
+    this.getPosts();
+    this.dataService.refreshPosts.subscribe(() => {
+      this.getPosts();
+    });
+  }
+
+  getPosts() {
     this.dataService.getData('posts').subscribe(data => {
       console.log(data);
       this.posts = data;

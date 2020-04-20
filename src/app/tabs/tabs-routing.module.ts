@@ -18,6 +18,26 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'posts/edit-post',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../pages/edit-post/edit-post.module').then( m => m.EditPostPageModule)
+          }
+        ]
+      },
+      {
+        path: 'posts/:id/edit',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+            import('../pages/edit-post/edit-post.module').then( m => m.EditPostPageModule)
+          }
+        ]
+      },
+      {
         path: 'posts/:id',
         children: [
           {

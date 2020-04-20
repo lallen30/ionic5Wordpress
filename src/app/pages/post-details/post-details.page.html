@@ -23,14 +23,14 @@
         </ion-item>
       </ion-col>
       <ion-col size="6" *ngIf="(authService.isAuthenticated | async)">
-        <ion-button expand="block" color="primary">
+        <ion-button expand="block" color="primary" routerLink="/tabs/posts/{{post?.id}}/edit">
           <ion-icon slot="start" name="create"></ion-icon>
           Edit
         </ion-button>
       </ion-col>
 
       <ion-col size="6" *ngIf="(authService.isAuthenticated | async)">
-        <ion-button expand="block" color="danger">
+        <ion-button expand="block" color="danger" (click)="onDelete()">
           <ion-icon slot="start" name="trash"></ion-icon>
           Delete
         </ion-button>
